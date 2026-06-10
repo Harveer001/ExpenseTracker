@@ -62,14 +62,12 @@ public class Expense{
         setAmount(amount);
     }
 
-//
+//METHODS
 
     @Override
     public String toString() {
         return "| " + date + " | " + category + " | " + description + " | " + amount + " | ";
     }
-
-//
 
     public String toCSV() {
         return date + "," + category + "," + description + "," + amount ;
