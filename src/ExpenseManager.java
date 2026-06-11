@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ExpenseManager {
@@ -9,6 +10,7 @@ public class ExpenseManager {
 
     public ExpenseManager() {
         expenses = new ArrayList<>();
+        loadExpenses();
     }
 
 //METHODS
@@ -56,5 +58,16 @@ public class ExpenseManager {
         catch(IOException e) {
             System.out.println("Error loading expenses: " + e.getMessage());
         }
+    }
+
+    public boolean deleteExpense(LocalDate date, String description){
+        for(int i = 0; i < expenses.size(); i++){
+            Expense expense = expenses.get(i);
+            if(expense.getDate().equals(date) && expense.getDescription().equals(description)) {
+                expenses.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 }
