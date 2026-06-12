@@ -1,6 +1,7 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class ExpenseManager {
     private ArrayList<Expense> expenses;
@@ -69,5 +70,33 @@ public class ExpenseManager {
             }
         }
         return false;
+    }
+
+    public ArrayList<Expense> sortByAmount(boolean descending) {
+        ArrayList<Expense> sortedExpenses = new ArrayList<>(expenses);
+        if (descending) {
+            sortedExpenses.sort(Comparator.comparingDouble(Expense::getAmount).reversed());
+        } else {
+            sortedExpenses.sort(Comparator.comparingDouble(Expense::getAmount));
+        }
+        return sortedExpenses;
+    }
+    public ArrayList<Expense> sortByDate(boolean descending) {
+        ArrayList<Expense> sortedExpenses = new ArrayList<>(expenses);
+        if (descending) {
+            sortedExpenses.sort(Comparator.comparing(Expense::getDate).reversed());
+        } else {
+            sortedExpenses.sort(Comparator.comparing(Expense::getDate));
+        }
+        return sortedExpenses;
+    }
+    public ArrayList<Expense> sortByCategory(boolean descending) {
+        ArrayList<Expense> sortedExpenses = new ArrayList<>(expenses);
+        if (descending) {
+            sortedExpenses.sort(Comparator.comparing(Expense::getCategory).reversed());
+        } else {
+            sortedExpenses.sort(Comparator.comparing(Expense::getCategory));
+        }
+        return sortedExpenses;
     }
 }

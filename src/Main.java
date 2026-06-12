@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -14,8 +15,9 @@ public class Main {
                             "2. View Expense\n" +
                             "3. Delete Expense\n" +
                             "4. Total Spending\n" +
-                            "5. Save Expense\n" +
-                            "6. Quit");
+                            "5. View sorted Expense\n" +
+                            "6. Save Expense\n" +
+                            "7. Quit");
             System.out.println("==========================================");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -52,7 +54,7 @@ public class Main {
                 case 3 : {
                     System.out.print("Date: ");
                     LocalDate date = LocalDate.parse(scanner.nextLine());
-                    System.out.println("Description: ");
+                    System.out.print("Description: ");
                     String description = scanner.nextLine();
                     if (manager.deleteExpense(date, description)) {
                         System.out.println("Deleted Successfully.");
@@ -67,11 +69,48 @@ public class Main {
                     break;
                 }
                 case 5 : {
+                    System.out.println("Select sort type : \n" +
+                            "1. Sort By Date\n" +
+                            "2. Sort By Amount\n" +
+                            "3. Sort By Category");
+                    int sortType = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Descending(y/n) : ");
+                    boolean descending = scanner.nextLine().equalsIgnoreCase("Y");
+                    switch(sortType) {
+                        case 1 : {
+                            ArrayList<Expense> sortedExpenses = manager.sortByDate(descending);
+                            for(Expense expense : sortedExpenses){
+                                System.out.println(expense);
+                            }
+                            break;
+                        }
+                        case 2 : {
+                            ArrayList<Expense> sortedExpenses = manager.sortByAmount(descending);
+                            for(Expense expense : sortedExpenses) {
+                                System.out.println(expense);
+                            }
+                            break;
+                        }
+                        case 3 : {
+                            ArrayList<Expense> sortedExpenses = manager.sortByCategory(descending);
+                            for(Expense expense : sortedExpenses) {
+                                System.out.println(expense);
+                            }
+                            break;
+                        }
+                        default : {
+                            System.out.println("Invalid Input. ");
+                        }
+                    }
+                    break;
+                }
+                case 6 : {
                     manager.saveExpenses();
                     System.out.println("Expenses saved.");
                     break;
                 }
-                case 6 : {
+                case 7 : {
                     manager.saveExpenses();
                     System.out.println("Goodbye!");
                     running = false;
