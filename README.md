@@ -32,23 +32,14 @@ Validation
 Project Structure
 
 ExpenseTracker
-
 ├── src/
-
 │   ├── Main.java
-
 │   ├── Expense.java
-
 │   └── ExpenseManager.java
-
 │
-
 ├── data/
-
 │   └── expenses.csv
-
 │
-
 └── README.md
 
 ⸻
@@ -67,16 +58,13 @@ Technologies Used
 OOP Concepts Used
 
 Encapsulation
-
 * Private fields
 * Getters and Setters
 
 Association
-
 * ExpenseManager manages Expense objects
 
 Object Creation
-
 * Expense objects created using constructors
 
 ⸻
@@ -84,21 +72,13 @@ Object Creation
 Architecture
 
 Main
-
 ↓
-
 ExpenseManager
-
 ↓
-
 ArrayList
-
 ↓
-
 Expense Objects
-
 ↓
-
 CSV Storage
 
 ⸻
